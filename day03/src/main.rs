@@ -3,8 +3,24 @@ use std::io::BufReader;
 use std::fs::File;
 
 // We use BufReader since we won't go back in file and we don't need to store it in memory.
+#[allow(unused_must_use)]
+fn main() {
+    part_one();
+    part_two();
+}
 
-fn main() -> std::io::Result<()> {
+fn part_two() {
+    println!("{}", [(1,1), (3,1), (5,1), (7,1), (1,2)].iter()
+             .map(|&(x,y)| include_str!("../assets/input.txt")
+                  .lines()
+                  .step_by(y)
+                  .enumerate()
+                  .filter(|(i,row)| row.as_bytes()[(i *x)%row.len()]==b'#')
+                  .count()
+             ).product::<usize>());
+}
+
+fn part_one() -> std::io::Result<()> {
     let f = File::open("assets/input.txt")?;
     let mut reader = BufReader::new(f);
     let mut i: usize = 0;
