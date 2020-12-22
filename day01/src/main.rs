@@ -1,5 +1,5 @@
 fn main() {
-    let mut input: Vec<u32> = include_str!("../assets/input_puzzle.txt")
+    let mut input: Vec<u32> = include_str!("../assets/input.txt")
         .lines()
         .map(|s| s.parse().unwrap())
         .collect();
